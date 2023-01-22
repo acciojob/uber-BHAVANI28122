@@ -8,7 +8,7 @@ public class Cab{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cabId;
+    private int id;
 
     private int perKmRate;
 
@@ -27,12 +27,12 @@ public class Cab{
     }
 
 
-    public int getCabId() {
-        return cabId;
+    public int getId() {
+        return id;
     }
 
-    public void setCabId(int cabId) {
-        this.cabId = cabId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPerKmRate() {
@@ -43,7 +43,7 @@ public class Cab{
         this.perKmRate = perKmRate;
     }
 
-    public boolean isAvailable() {
+    public boolean getAvailable() {
         return available;
     }
 
