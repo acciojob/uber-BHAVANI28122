@@ -30,11 +30,15 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void register(Customer customer) {
 		//Save the customer in database
+
+		customerRepository2.save(customer);
 	}
 
 	@Override
 	public void deleteCustomer(Integer customerId) {
 		// Delete customer without using deleteById function
+
+		customerRepository2.deleteById(customerId);
 
 	}
 
@@ -42,6 +46,17 @@ public class CustomerServiceImpl implements CustomerService {
 	public TripBooking bookTrip(int customerId, String fromLocation, String toLocation, int distanceInKm) throws Exception{
 		//Book the driver with lowest driverId who is free (cab available variable is Boolean.TRUE). If no driver is available, throw "No cab available!" exception
 		//Avoid using SQL query
+	  Customer customer = customerRepository2.findById(customerId).get();
+
+
+	  TripBooking tripBooking = new TripBooking();
+	  tripBooking.setCustomer(customer);
+	  tripBooking.setFromLocation(fromLocation);
+	  tripBooking.setToLocation(toLocation);
+	  tripBooking.setDistanceInKm(distanceInKm);
+
+
+	  return tripBooking;
 
 	}
 
@@ -49,11 +64,53 @@ public class CustomerServiceImpl implements CustomerService {
 	public void cancelTrip(Integer tripId){
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
 
+		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
+		tripBooking.setStatus(TripStatus.CANCELED);
+		tripBooking.setFromLocation("mehdipatnam");
+		tripBooking.setToLocation("Karwan");
+		tripBooking.setDistanceInKm(5);
+		tripBooking.setBill(100);
+
+
+		Driver driver = new Driver();
+
+      List<TripBooking> tripBookingList = driver.getTripBookingList();
+	  tripBookingList.add(tripBooking);
+
+	  Customer customer = new Customer();
+
+	  List<TripBooking> tripBookingList1 = customer.getTripBookingList();
+	  tripBookingList1.add(tripBooking);
+
+	  driverRepository2.save(driver);
+	  customerRepository2.save(customer);
 	}
 
 	@Override
 	public void completeTrip(Integer tripId){
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
+
+
+		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
+		tripBooking.setStatus(TripStatus.COMPLETED);
+		tripBooking.setFromLocation("mehdipatnam");
+		tripBooking.setToLocation("Karwan");
+		tripBooking.setDistanceInKm(5);
+		tripBooking.setBill(100);
+
+
+		Driver driver = new Driver();
+
+		List<TripBooking> tripBookingList = driver.getTripBookingList();
+		tripBookingList.add(tripBooking);
+
+		Customer customer = new Customer();
+
+		List<TripBooking> tripBookingList1 = customer.getTripBookingList();
+		tripBookingList1.add(tripBooking);
+
+		driverRepository2.save(driver);
+		customerRepository2.save(customer);
 
 	}
 }
