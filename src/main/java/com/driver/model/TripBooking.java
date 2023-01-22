@@ -4,6 +4,7 @@ import com.driver.model.TripStatus;
 
 import javax.persistence.*;
 
+@Entity
 public class TripBooking {
 
     @Id

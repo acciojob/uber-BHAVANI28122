@@ -2,6 +2,7 @@ package com.driver.model;
 
 import javax.persistence.*;
 
+@Entity
 public class Cab{
 
 
