@@ -20,9 +20,11 @@ public class TripBooking {
     private int bill;
 
     @ManyToOne
+    @JoinColumn
     private Driver driver;
 
     @ManyToOne
+    @JoinColumn
     private Customer customer;
 
     public TripBooking(String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill) {
