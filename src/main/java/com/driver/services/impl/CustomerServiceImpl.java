@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 			if(driver1.getCab().getAvailable() == Boolean.TRUE){
 
-				if(driver == null ||driver.getDriverId() > driver1.getDriverId()){
+				if((driver == null) || (driver.getDriverId() > driver1.getDriverId())){
 					driver =driver1;
 				}
 
