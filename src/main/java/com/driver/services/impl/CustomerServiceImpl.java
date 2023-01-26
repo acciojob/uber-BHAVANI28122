@@ -86,7 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 		int ratePerKm = driver.getCab().getPerKmRate();
 
-		tripBooking.setBill(distanceInKm*10);
+		tripBooking.setBill(distanceInKm*ratePerKm);
 
 		customer.getTripBookingList().add(tripBooking);
 		customerRepository2.save(customer);
