@@ -57,12 +57,6 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Driver> driverList = driverRepository2.findAll();
 
 
-		if(driverList == null){
-
-			throw new Exception("No cab available!");
-		}
-
-
 
 		for(Driver driver1: driverList){
 
@@ -75,6 +69,10 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 		}
 
+		if(driver == null){
+
+			throw new Exception("No cab available!");
+		}
 
 		Customer customer = customerRepository2.findById(customerId).get();
 		tripBooking.setCustomer(customer);
